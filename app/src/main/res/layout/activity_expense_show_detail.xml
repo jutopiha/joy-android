@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/skin"
+    >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/skin">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageButton
+                android:id = "@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding = "0dp"
+                android:layout_margin="50dp"
+                android:src = "@drawable/re_btn"
+                android:onClick="onBackButtonClicked"
+                android:background="#00ff0000"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:text="지출 상세 조회"
+                android:textSize="30dp"
+                android:textColor="@color/coral"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--날짜-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginLeft="100dp"
+                >
+
+                <TextView
+                    android:id="@+id/expenseDayTv"
+                    android:text="날짜"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft= "18dp"
+                    android:textColor="#000000"
+                    android:textSize="24dp"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:id = "@+id/expenseDayValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft = "16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_below="@id/expenseDayTv"
+                    android:paddingLeft="12dp"
+                    android:text = "test"
+                    android:textColor="#666666"
+                    android:textSize="16dp"/>
+            </RelativeLayout>
+
+            <!--시간-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginLeft="100dp"
+                >
+
+                <TextView
+                    android:id="@+id/expenseTimeTv"
+                    android:text="시간"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft= "18dp"
+                    android:textColor="#000000"
+                    android:textSize="24dp"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:id = "@+id/expenseTimeValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft = "16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_below="@id/expenseTimeTv"
+                    android:paddingLeft="12dp"
+                    android:text = "test"
+                    android:textColor="#666666"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <!--분야-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginLeft="100dp"
+                >
+
+                <TextView
+                    android:id="@+id/expenseCategoryTv"
+                    android:text="분야"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft= "18dp"
+                    android:textColor="#000000"
+                    android:textSize="24dp"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:id = "@+id/expenseCategoryValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft = "16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_below="@id/expenseCategoryTv"
+                    android:paddingLeft="12dp"
+                    android:text = "test"
+                    android:textColor="#666666"
+                    android:textSize="16dp"/>
+            </RelativeLayout>
+
+            <!--금액-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginLeft="100dp"
+                >
+
+                <TextView
+                    android:id="@+id/expenseMoneyTv"
+                    android:text="금액"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft= "18dp"
+                    android:textColor="#000000"
+                    android:textSize="24dp"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:id = "@+id/expenseMoneyValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft = "16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_below="@id/expenseMoneyTv"
+                    android:paddingLeft="12dp"
+                    android:text = "text"
+                    android:textColor="#666666"
+                    android:textSize="16dp"/>
+            </RelativeLayout>
+
+            <!--결제수단-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginLeft="100dp"
+                >
+
+                <TextView
+                    android:id="@+id/expensePayMethodTv"
+                    android:text="결제수단"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft= "18dp"
+                    android:textColor="#000000"
+                    android:textSize="24dp"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:id = "@+id/expensePayMethodValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft = "16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_below="@id/expensePayMethodTv"
+                    android:paddingLeft="12dp"
+                    android:text = "test"
+                    android:textColor="#666666"
+                    android:textSize="16dp"/>
+            </RelativeLayout>
+
+            <!--메모-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginLeft="100dp"
+                >
+
+                <TextView
+                    android:id="@+id/expenseMemoTv"
+                    android:text="메모"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft= "18dp"
+                    android:textColor="#000000"
+                    android:textSize="24dp"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:id = "@+id/expenseMemoValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft = "16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_below="@id/expenseMemoTv"
+                    android:paddingLeft="12dp"
+                    android:textColor="#666666"
+                    android:textSize="16dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="10dp">
+            <Button
+                android:id="@+id/modifyBtn"
+                android:text="수정"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:theme="@style/MyButton"
+                android:onClick = "onModifyButtonClicked"/>
+
+            <Button
+                android:id="@+id/deleteBtn"
+                android:text="삭제"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:theme="@style/MyButton"
+                android:onClick="onDeleteButtonClicked"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

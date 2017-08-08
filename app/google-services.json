@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "486484624803",
+    "firebase_url": "https://joyful-becb0.firebaseio.com",
+    "project_id": "joyful-becb0",
+    "storage_bucket": "joyful-becb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486484624803:android:f22139f358964c8f",
+        "android_client_info": {
+          "package_name": "org.androidtown.newtiggle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486484624803-jcnb08he30urljrc9vigjrrhr3uhj9cq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1vGKr2pdtM_Ui9nKx1RHLB0XscjetQIM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

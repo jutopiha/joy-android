@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#cdf1e2</color>
+    <color name="colorPrimaryDark">#a9dcd1</color>
+    <color name="colorAccent">#f9e0cf</color>
+    <item name = "violet" type="color">#d2bfca</item>
+    <item name = "pink" type ="color">#F472D0</item>
+    <item name = "likewhite" type="color">#f3ecea</item>
+    <item name = "lightmint" type="color">#cdf1e2</item>
+    <item name = "darkmint" type="color">#a9dcd1</item>
+    <item name = "coral" type="color">#f24455</item>
+    <item name= "skin" type="color">#f9e0cf</item>
+</resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/skin"
+    >
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/skin"
+        android:weightSum="1">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#00ff0000"
+            android:onClick="exitButton"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/exit" />
+
+        <ImageView
+            android:id="@+id/mainImage"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/pig" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tool = "http://schemas.android.com/tools"
+            android:orientation = "horizontal"
+            android:layout_width = "match_parent"
+            android:layout_height= "wrap_content"
+            android:gravity = "center">
+
+            <ImageButton
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:onClick="incomeButton"
+                android:padding = "0dp"
+                android:layout_margin="20dp"
+                android:src = "@drawable/plus"
+                android:background="#00ff0000"
+                android:scaleType="fitCenter"/>
+
+
+            <ImageButton
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:onClick="expenseButton"
+                android:padding = "0dp"
+                android:layout_margin="20dp"
+                android:src = "@drawable/minus"
+                android:background="#00ff0000"
+                android:scaleType="fitCenter"/>
+
+            <ImageButton
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:onClick="showButton"
+                android:padding = "0dp"
+                android:layout_margin="20dp"
+                android:src = "@drawable/show"
+                android:background="#00ff0000"
+                android:scaleType="fitCenter"/>
+
+
+            <ImageButton
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:onClick="staticsButton"
+                android:padding = "0dp"
+                android:layout_margin="20dp"
+                android:src = "@drawable/plus"
+                android:background="#00ff0000"
+                android:scaleType="fitCenter"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "수입 내역 입력하기"
+                android:layout_marginLeft = "100dp"
+                android:layout_marginRight = "100dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "지출 내역 입력하기"
+                android:layout_marginLeft = "50dp"
+                android:layout_marginRight = "100dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "조회하기"
+                android:layout_marginLeft = "50dp"/>
+
+        </LinearLayout>
+
+    <!--
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="43dp"
+            android:layout_marginRight="43dp">
+
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="56dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text = "수입 입력하기"/>
+
+        </RelativeLayout>-->
+
+    </LinearLayout>
+
+</ScrollView>

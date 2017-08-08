@@ -1,0 +1,80 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/skin"
+    >
+    <LinearLayout
+        android:id="@+id/parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/skin">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageButton
+                android:id = "@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onBackButtonClicked"
+                android:padding = "0dp"
+                android:layout_margin="50dp"
+                android:src = "@drawable/re_btn"
+                android:background="#00ff0000"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:text="통계통계"
+                android:textColor="@color/coral"
+                android:textSize="30dp" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            >
+            
+            <NumberPicker
+                android:id="@+id/selectYear"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="20dp"
+                />
+            
+            <NumberPicker
+                android:id="@+id/selectMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        >
+            <Button
+                android:id="@+id/barChartBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="막대그래프"
+                android:theme = "@style/MyButton"
+                android:onClick="sendBarInfo"/>
+            <Button
+                android:id="@+id/pieChartBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원형그래프"
+                android:theme = "@style/MyButton"
+                android:onClick="sendPieInfo"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

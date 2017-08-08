@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/skin"
+    >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:padding="20dp">
+
+        <ProgressBar
+            android:id="@+id/sing_in_progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"/>
+
+        <ScrollView
+            android:id="@+id/sing_in_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="50dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginRight="100dp"
+                    android:layout_marginLeft="100dp">
+                    <TextView
+                        android:id="@+id/userBankTv"
+                        android:text="주거래은행"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="18dp"
+                        android:paddingBottom="50dp"/>
+                    <Spinner
+                        android:id="@+id/userBankSp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/userBankTv"
+                        android:entries="@array/bank"
+                        android:paddingLeft="18dp"
+                        android:paddingTop="18dp"/>
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/sendUserInfoBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="회원가입"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</ScrollView>

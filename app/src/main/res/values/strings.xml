@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NewTiggle</string>
+    <string name="facebook_app_id">1892044964380913</string>
+    <string name="fb_login_protocol_scheme">fb1892044964380913</string>
+    <string name="login_success">로그인 성공</string>
+    <string name="login_cancel">로그인 취소</string>
+    <string name="login_error">로그인 에러</string>
+    <string name="authentication_fail">Authentication failed.</string>
+</resources>
