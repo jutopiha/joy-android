@@ -1,6 +1,5 @@
 package org.androidtown.newtiggle.activity;
 
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -39,6 +38,7 @@ import java.util.List;
  * Created by Juha on 2017-05-18.
  */
 
+/* 스레드 수정  현정2017-08-14 */
 
 public class IncomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -97,7 +97,7 @@ public class IncomeActivity extends AppCompatActivity implements View.OnClickLis
         year = mDate.getYear();
         month = mDate.getMonth();
         day = mDate.getDayOfMonth();
-        mDay.setText(String.format("%d-%d-%d", year, month+1, day));
+        mDay.setText(String.format("%d-%d-%d", year, month + 1, day));
 
 
         //time받기 위한
@@ -133,8 +133,7 @@ public class IncomeActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         //sendObject();
-        switch(v.getId())
-        {
+        switch (v.getId()) {
             case R.id.objectBtn:
                 sendObject();
                 finish();
@@ -191,105 +190,83 @@ public class IncomeActivity extends AppCompatActivity implements View.OnClickLis
 
 
     //화면 터치시 키보드 내리기
-    public void linearOnClick(View view){
+    public void linearOnClick(View view) {
         imm.hideSoftInputFromWindow(mJsonIncomeMemoEt.getWindowToken(), 0);
         imm.hideSoftInputFromWindow(mJsonIncomeMoneyEt.getWindowToken(), 0);
     }
+
     public void onBackButtonClicked(View v) {
         Toast.makeText(getApplicationContext(), "돌아가기 버튼이 눌렸어요", Toast.LENGTH_LONG).show();
         finish();
     }
 
 
-    private class SaveNewIncome extends Thread
-    {
+    private class SaveNewIncome extends Thread {
         @Override
         public void run() {
 
-            String screens;
-            //create network connecting thread
-            SendNewIncome request = new SendNewIncome();
-            screens = request.postData("ljh", jsonObject);
-
-            JSONObject result;
-            JSONObject data;
+            postData("ljh", jsonObject);
 
         }
     }
 
-    private class SendNewIncome extends AsyncTask<String, String, String> {
+    public String postData(String uid, JSONObject data) {
 
         String msg = MainActivity.urlString + "/post/income";
 
-        @Override
-        protected String doInBackground(String... strings) {
-            postData("ljh", jsonObject);
+        InputStream inputStream = null;
+        BufferedReader rd = null;
+        StringBuilder result = new StringBuilder();
+
+        StringBuilder requestUrl = new StringBuilder(msg);
+
+        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        nvps.add(new BasicNameValuePair("uid", MainActivity.currentUserId));
+        String querystring = URLEncodedUtils.format(nvps, "utf-8");
+
+        requestUrl.append("?");
+        requestUrl.append(querystring);
+
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(requestUrl.toString());
+        Log.d("msg is :", requestUrl.toString());
+
+        try {
+            String json = "";
+            json = data.toString();
+            //json = URLEncoder.encode(json,"UTF-8"); //한글이 ??로 저장되는 거 바꿈
+            //String koreanJson = new String(json.getBytes("UTF-8"));
+
+            // loglog
+            Log.v("^^^^^json", json);
+
+            StringEntity stringEntity = new StringEntity(json, "utf-8");
+            httpPost.setEntity(stringEntity);
+
+
+            //answer객체 서버로 전송하고 survey객체 받아오는 과정
+
+            HttpResponse httpResponse = httpClient.execute(httpPost);
+            Log.v("******server", "send msg successed");
+
+            inputStream = httpResponse.getEntity().getContent();
+            rd = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            Log.v("Main::bring success", "result:" + result.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.v("******server", "send msg failed");
+        }
+
+        if (result != null) {
+            return result.toString();
+        } else {
             return null;
         }
 
-        @Override
-        protected void onPostExecute(String s) {
-            //super.onPostExecute(s);
-            Log.v("Main::", "start send");
-        }
-
-        public String postData(String uid, JSONObject data) {
-            InputStream inputStream = null;
-            BufferedReader rd = null;
-            StringBuilder result = new StringBuilder();
-
-            StringBuilder requestUrl = new StringBuilder(msg);
-
-            List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-            nvps.add(new BasicNameValuePair("uid", MainActivity.currentUserId));
-            String querystring = URLEncodedUtils.format(nvps, "utf-8");
-
-            requestUrl.append("?");
-            requestUrl.append(querystring);
-
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(requestUrl.toString());
-            Log.d("msg is :", requestUrl.toString());
-
-            try {
-                String json="";
-                json=data.toString();
-                //json = URLEncoder.encode(json,"UTF-8"); //한글이 ??로 저장되는 거 바꿈
-                //String koreanJson = new String(json.getBytes("UTF-8"));
-
-                // loglog
-                Log.v("^^^^^json", json);
-
-                StringEntity stringEntity=new StringEntity(json, "utf-8");
-                httpPost.setEntity(stringEntity);
-
-
-                //answer객체 서버로 전송하고 survey객체 받아오는 과정
-
-                HttpResponse httpResponse = httpClient.execute(httpPost);
-                Log.v("******server", "send msg successed");
-
-                inputStream = httpResponse.getEntity().getContent();
-                rd = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = rd.readLine()) != null) {
-                    result.append(line);
-                }
-                Log.v("Main::bring success", "result:" + result.toString());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.v("******server", "send msg failed");
-            }
-
-            if (result != null) {
-                return result.toString();
-            } else {
-                return null;
-            }
-
-        }
     }
-
-    //okay버튼 클릭 후 전 화면으로 돌아가기
 }

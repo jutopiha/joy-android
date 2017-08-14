@@ -7,12 +7,20 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.numetriclabz.numandroidcharts.ChartData;
+import com.numetriclabz.numandroidcharts.StackedBarChart;
+
 import org.androidtown.newtiggle.R;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 조현정 on 2017-07-14.
  */
+
+/* 막대그래프 추가 현정 2017-08-14*/
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -32,6 +40,7 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
+
         //2015~2017까지 연도 picker만들기
         yearPicker = (NumberPicker)findViewById(R.id.selectYear);
         yearPicker.setMinValue(2014);
@@ -46,6 +55,27 @@ public class StatisticsActivity extends AppCompatActivity {
         monthPicker.setOnLongPressUpdateInterval(100);
         monthPicker.setValue(10);
 
+        StackedBarChart stackBarChart = (StackedBarChart) findViewById(R.id.chart);     //bar chart findview
+        //ChartData value = new ChartData;
+
+        List<ChartData> value = new ArrayList<>();
+
+        Float[] value1 = {2f,3f,6f,5f };
+        Float[] value2 = {3f,5f,7f,9f };
+
+        value.add(new ChartData(value1, "income"));
+        value.add(new ChartData(value2, "expense"));
+
+        List<String> h_lables = new ArrayList<>();
+        h_lables.add("sun");
+        h_lables.add("mon");
+
+        stackBarChart.setLabels(h_lables);
+        stackBarChart.setData(value);
+
+        stackBarChart.setHorizontalStckedBar(true);
+        stackBarChart.setPercentageStacked(true);
+
     }
 
 
@@ -54,5 +84,7 @@ public class StatisticsActivity extends AppCompatActivity {
         finish();
     }
 
-
+    public void sendBarInfo (View v) {
+        Toast.makeText(getApplicationContext(), "막대그래프", Toast.LENGTH_SHORT).show();
+    }
 }

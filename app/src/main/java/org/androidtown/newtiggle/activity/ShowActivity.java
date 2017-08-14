@@ -111,7 +111,7 @@ public class ShowActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        //sendObject();
+
         switch(v.getId()){
             case R.id.objectBtn:
                 allIncome = 0;

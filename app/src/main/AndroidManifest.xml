@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.androidtown.newtiggle">
 
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
@@ -9,7 +10,7 @@
     <uses-permission android:name="android.permission.SEND_SMS"/>
 
 
-    <application
+    <application tools:replace="android:label"
         android:allowBackup="true"
         android:icon="@drawable/pig"
         android:label="티끌모아 태산"

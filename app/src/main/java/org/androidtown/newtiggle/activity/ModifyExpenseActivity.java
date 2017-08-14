@@ -1,7 +1,6 @@
 package org.androidtown.newtiggle.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +38,7 @@ import java.util.List;
  * Created by 조현정 on 2017-06-17.
  */
 
+/* 스레드 수정  현정2017-08-14 */
 public class ModifyExpenseActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText mDay,mExpenseDay, mExpenseTime, mExpenseMoney,mExpenseMemo;
     private Spinner mExpenseCategory, mExpensePayMethod;
@@ -218,82 +218,65 @@ public class ModifyExpenseActivity extends AppCompatActivity implements View.OnC
     private class SaveNewExpense extends Thread{
         @Override
         public void run(){
-            String screens;
-            SendNewExpense request = new SendNewExpense();
-            screens = request.postData("ljh",jsonObject);
 
-            JSONObject result;
-            JSONObject data;
+            postData("ljh",jsonObject);
         }
     }
 
-    private class SendNewExpense extends AsyncTask<String, String, String>{
+    public String postData(String uid, JSONObject data){
 
         String msg = MainActivity.urlString+ "/put/expense";
 
-        @Override
-        protected String doInBackground(String... strings){
-            postData("ljh", jsonObject);
-            return  null;
+        InputStream inputStream = null;
+        BufferedReader rd = null;
+        StringBuilder result = new StringBuilder();
+
+        StringBuilder requestUrl = new StringBuilder(msg);
+
+        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        nvps.add(new BasicNameValuePair("uid", MainActivity.currentUserId));
+        nvps.add(new BasicNameValuePair("eid", String.valueOf(selectExpense.getmExpenseId())));
+        String querystring = URLEncodedUtils.format(nvps, "utf-8");
+
+        requestUrl.append("?");
+        requestUrl.append(querystring);
+
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPut httpPut = new HttpPut(requestUrl.toString());
+        Log.d("msg is :", requestUrl.toString());
+
+        try {
+            String json="";
+            json=data.toString();
+
+            // loglog
+            Log.v("^^^^^json", json);
+
+            StringEntity stringEntity=new StringEntity(json, "utf-8");
+            httpPut.setEntity(stringEntity);
+
+            //answer객체 서버로 전송하고 survey객체 받아오는 과정
+
+            HttpResponse httpResponse = httpClient.execute(httpPut);
+            Log.v("******server", "send msg successed");
+
+            inputStream = httpResponse.getEntity().getContent();
+            rd = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            Log.v("Main::bring success", "result:" + result.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.v("******server", "send msg failed");
         }
 
-        @Override
-        protected void onPostExecute(String s){
-            Log.v("Main::", "start send");
-        }
-
-        public String postData(String uid, JSONObject data){
-            InputStream inputStream = null;
-            BufferedReader rd = null;
-            StringBuilder result = new StringBuilder();
-
-            StringBuilder requestUrl = new StringBuilder(msg);
-
-            List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-            nvps.add(new BasicNameValuePair("uid", MainActivity.currentUserId));
-            nvps.add(new BasicNameValuePair("eid", String.valueOf(selectExpense.getmExpenseId())));
-            String querystring = URLEncodedUtils.format(nvps, "utf-8");
-
-            requestUrl.append("?");
-            requestUrl.append(querystring);
-
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpPut httpPut = new HttpPut(requestUrl.toString());
-            Log.d("msg is :", requestUrl.toString());
-
-            try {
-                String json="";
-                json=data.toString();
-
-                // loglog
-                Log.v("^^^^^json", json);
-
-                StringEntity stringEntity=new StringEntity(json, "utf-8");
-                httpPut.setEntity(stringEntity);
-
-                //answer객체 서버로 전송하고 survey객체 받아오는 과정
-
-                HttpResponse httpResponse = httpClient.execute(httpPut);
-                Log.v("******server", "send msg successed");
-
-                inputStream = httpResponse.getEntity().getContent();
-                rd = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = rd.readLine()) != null) {
-                    result.append(line);
-                }
-                Log.v("Main::bring success", "result:" + result.toString());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.v("******server", "send msg failed");
-            }
-
-            if (result != null) {
-                return result.toString();
-            } else {
-                return null;
-            }
+        if (result != null) {
+            return result.toString();
+        } else {
+            return null;
         }
     }
 }
